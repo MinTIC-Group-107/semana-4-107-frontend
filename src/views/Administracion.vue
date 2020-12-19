@@ -21,17 +21,17 @@
         </v-list-item>
       </template>
 
-      <!-- Grupo usuarios -->
+      <!-- Grupo Cuenta -->
       <v-list-group
         :value="true"
         prepend-icon="mdi-account-circle"
       >
         <template v-slot:activator>
-          <v-list-item-title>Users</v-list-item-title>
+          <v-list-item-title>Cuenta</v-list-item-title>
         </template>
 
         <!-- Grupo Admnin -->
-        <v-list-group
+        <!-- <v-list-group
           :value="true"
           no-action
           sub-group
@@ -53,39 +53,39 @@
               <v-icon v-text="icon"></v-icon>
             </v-list-item-icon>
           </v-list-item>
-        </v-list-group>
+        </v-list-group> -->
         <!-- Fin grupo Admin -->
 
-        <!-- Grupo Actions -->
+        <!-- Grupo Usuarios -->
         <v-list-group
           no-action
           sub-group
         >
           <template v-slot:activator>
             <v-list-item-content>
-              <v-list-item-title>Actions</v-list-item-title>
+              <v-list-item-title>Usuarios</v-list-item-title>
             </v-list-item-content>
           </template>
 
           <v-list-item
-            v-for="([title, icon], i) in cruds"
-            :key="i"
-            link
+            to="/usuarios"
+            links
+            v-if="$permisos.Usuarios.indexOf($store.state.user.rol) > -1"
           >
-            <v-list-item-title v-text="title"></v-list-item-title>
+            <v-list-item-title >Permisos</v-list-item-title>
 
             <v-list-item-icon>
-              <v-icon v-text="icon"></v-icon>
+              <v-icon>mdi-account-multiple-outline</v-icon>
             </v-list-item-icon>
           </v-list-item>
         </v-list-group>
         
       </v-list-group>
-      <!-- Fin grupo Actions -->
-      <!-- Fin grupo usuarios -->
+      <!-- Fin grupo Usuarios -->
+      <!-- Fin grupo Cuenta -->
 
       <!-- Botón de categorías -->
-      <v-list-item to="/categorias">
+      <v-list-item to="/categorias" v-if="$permisos.Categorias.indexOf($store.state.user.rol) > -1">
         <v-list-item-icon>
             <v-icon>mdi-folder-multiple-plus</v-icon>
         </v-list-item-icon>
@@ -96,7 +96,7 @@
         </v-list-item-content>
       </v-list-item>
       <!-- Botón de artículos -->
-      <v-list-item to="/articulos">
+      <v-list-item to="/articulos" v-if="$permisos.Articulos.indexOf($store.state.user.rol) > -1">
         <v-list-item-icon>
             <v-icon>mdi-shopping</v-icon>
         </v-list-item-icon>
@@ -124,7 +124,7 @@
         <span class="hidden-sm-and-down">Administración del sitio</span>
       </v-toolbar-title>      
       <v-spacer></v-spacer>
-      <v-btn icon @click="logUserOut">
+      <v-btn icon @click="salir()">
         <v-icon>logout</v-icon>
       </v-btn>
     </v-app-bar>
@@ -171,10 +171,16 @@ export default {
         ['Delete', 'mdi-delete'],
       ],
   }),
+  beforeCreate() {
+    this.$store.dispatch('autoLogin')
+  },
   methods: {
         logUserOut() {
             localStorage.removeItem('jwt')
             this.$router.push('/login')
+        },
+        salir() {
+          this.$store.dispatch('salir')
         }
   }
 };

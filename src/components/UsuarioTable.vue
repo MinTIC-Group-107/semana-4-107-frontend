@@ -1,13 +1,12 @@
 <template>
   <v-data-table
     :headers="headers"
-    :items="articulos"
-    sort-by="nombre"
+    :items="usuarios"
+    sort-by="calories"
     class="elevation-1"
     :loading="cargando"
     loading-text="Cargando... Por favor espere"
   >
-  
     <template v-slot:top>
       <v-toolbar
         flat
@@ -24,15 +23,15 @@
           max-width="500px"
         >
           <template v-slot:activator="{ on, attrs }">
-            <v-btn
+            <!-- <v-btn
               color="primary"
               dark
               class="mb-2"
               v-bind="attrs"
               v-on="on"
             >
-              Agregar artículo
-            </v-btn>
+              Agregar usuario
+            </v-btn> -->
           </template>
           <v-card>
             <v-card-title>
@@ -42,16 +41,6 @@
             <v-card-text>
               <v-container>
                 <v-row>
-                  <v-col
-                    cols="12"
-                   
-                  >
-                    <v-text-field
-                      v-model="editedItem.codigo"
-                      label="Código"
-                    ></v-text-field>
-                  </v-col>
-
                   <v-col
                     cols="12"
                     
@@ -66,8 +55,8 @@
                    
                   >
                     <v-text-field
-                      v-model="editedItem.descripcion"
-                      label="Descripcion"
+                      v-model="editedItem.email"
+                      label="Email"
                     ></v-text-field>
                   </v-col>
 
@@ -75,13 +64,10 @@
                     cols="12"
                    
                   >
-                    <v-select
-                    :items="categorias"
-                    item-text="nombre"
-                    item-value="id"
-                    label="Categoría"
-                    v-model="editedItem.categoria"
-                    ></v-select>
+                    <v-text-field
+                      v-model="editedItem.rol"
+                      label="Rol"
+                    ></v-text-field>
                   </v-col>
                   
                 </v-row>
@@ -159,45 +145,43 @@
   export default {
       props: ['tableName'],
     data: () => ({
+      cargando: true,
       dialog: false,
       dialogDelete: false,
-      cargando: true,
       headers: [
         { text: 'ID', value: 'id' },
-        { text: 'Código', value: 'codigo' },
         {
-          text: 'Artículos',
+          text: 'Nombre',
           align: 'start',
           sortable: true,
           value: 'nombre',
         },
-        { text: 'Descripcion', value: 'descripcion' },
+        { text: 'Email', value: 'email' },
+        { text: 'Permisos', value: 'rol' },
         { text: 'Estado', value: 'estado' },
-        { text: 'Categoría', value: 'Categorium.nombre' },
         { text: 'Actions', value: 'actions', sortable: false },
       ],
       editedIndex: -1,
       editedItem: {
-        codigo: '',
+        id: 0,
         nombre: '',
-        descripcion: '',
+        email: '',
+        rol: '',
         estado: 1,
-        categoria: '',
       },
       defaultItem: {
-        codigo: '',
+        id: 0,
         nombre: '',
-        descripcion: '',
+        email: '',
+        rol: '',
         estado: 1,
-        categoria: '',
       },
-      categorias: [],
-      articulos: [],
+      usuarios: []
     }),
 
     computed: {
       formTitle () {
-        return this.editedIndex === -1 ? 'Nuevo artículo' : 'Editar artículo'
+        return this.editedIndex === -1 ? 'Nueva usuario' : 'Editar usuario'
       },
     },
 
@@ -212,37 +196,18 @@
 
     created () {
       this.list()
-      this.listCategories()
     },
 
     methods: {
       list() {
-        this.$http.get('/api/articulo/list', {
+        this.$http.get('/api/usuario/', {
           headers: {
             token: this.$store.state.token,
           }
         })
           .then(response => {
-            this.articulos = response.data
-            this.articulos.categoria = response.data.Categorium
+            this.usuarios = response.data
             this.cargando = false
-            })
-          .catch(err => {
-            console.log('hay un error', err)
-          })
-          
-      },
-
-      listCategories() {
-        this.$http.get('/api/categoria/list', {
-          headers: {
-            token: this.$store.state.token,
-          }
-        })
-          .then(response => {
-            const categorias = response.data
-            const categoriasActivas = categorias.filter(categoria => categoria.estado === 1)
-            this.categorias = categoriasActivas
             })
           .catch(err => {
             console.log(err)
@@ -252,7 +217,6 @@
       editItem (item) {
         this.editedIndex = item.id
         this.editedItem = Object.assign({}, item)
-        this.editedItem.categoria =  item.Categorium
         this.dialog = true
       },
 
@@ -264,7 +228,7 @@
 
       deleteItemConfirm () {
         if (this.editedItem.estado === 1) {
-          this.$http.put('/api/articulo/deactivate', {
+          this.$http.put('/api/usuario/deactivate', {
             id: this.editedItem.id
           }, {
             headers: {
@@ -278,7 +242,7 @@
           })
           this.closeDelete()
         } else {
-          this.$http.put('/api/articulo/activate', {
+          this.$http.put('/api/usuario/activate', {
             id: this.editedItem.id
           }, {
             headers: {
@@ -312,8 +276,9 @@
 
       save () {
         if (this.editedIndex>-1) {
-          this.editedItem.categoriaId = this.editedItem.categoria
-          this.$http.put('/api/articulo/update', this.editedItem, {
+          const newUser = this.editedItem
+          delete newUser.estado
+          this.$http.put('/api/usuario/update', newUser, {
             headers: {
             token: this.$store.state.token,
           }
@@ -326,7 +291,7 @@
             console.log(err)
           })
         } else {
-          this.$http.post('/api/articulo/add', 
+          this.$http.post('/api/usuario/add', 
           this.editedItem, {
             headers: {
             token: this.$store.state.token,

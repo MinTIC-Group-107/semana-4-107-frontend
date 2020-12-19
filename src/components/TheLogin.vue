@@ -51,20 +51,25 @@ export default {
             password: ""
         }
     }),
+    beforeCreate() {
+      this.$store.dispatch('autoLogin')? this.$router.push('/administracion') : false
+    }
+    ,
     methods: {
         async loginUser() {
             try {
                 let response = await this.$http.post("/api/usuario/login", this.login)
                 ;
-                console.log(response.data);
+        
                 let token = response.data.tokenReturn;
+                this.$store.dispatch('guardarToken', token)
                 localStorage.setItem("jwt", token);
                 if (token) {
                     swal("Exitoso", "login exitoso", "success");
                     this.$router.push("/administracion");
                 }
             } catch (err) {
-                    swal("Error", "datos incorrectos", "error");
+                    swal("Error", err.response.data.message, "error");
                     console.log(err.response);
             }
         }

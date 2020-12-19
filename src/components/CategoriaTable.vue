@@ -4,6 +4,8 @@
     :items="categorias"
     sort-by="calories"
     class="elevation-1"
+    :loading="cargando"
+    loading-text="Cargando... Por favor espere"
   >
     <template v-slot:top>
       <v-toolbar
@@ -133,6 +135,7 @@
   export default {
       props: ['tableName'],
     data: () => ({
+      cargando: true,
       dialog: false,
       dialogDelete: false,
       headers: [
@@ -182,9 +185,14 @@
 
     methods: {
       list() {
-        this.$http.get('/api/categoria/list')
+        this.$http.get('/api/categoria/list', {
+          headers: {
+            token: this.$store.state.token
+          }
+        })
           .then(response => {
             this.categorias = response.data
+            this.cargando = false
             })
           .catch(err => {
             console.log(err)
@@ -207,7 +215,9 @@
         if (this.editedItem.estado === 1) {
           this.$http.put('/api/categoria/deactivate', {
             id: this.editedItem.id
-          }).then(() => {
+          }, {headers: {
+            token: this.$store.state.token
+          }}).then(() => {
             this.list()
           })
           .catch((err) => {
@@ -217,6 +227,10 @@
         } else {
           this.$http.put('/api/categoria/activate', {
             id: this.editedItem.id
+          }, {
+            headers: {
+            token: this.$store.state.token
+          }
           }).then(() => {
             this.list()
           })
@@ -245,7 +259,11 @@
 
       save () {
         if (this.editedIndex>-1) {
-          this.$http.put('/api/categoria/update', this.editedItem)
+          this.$http.put('/api/categoria/update', this.editedItem, {
+            headers: {
+            token: this.$store.state.token
+          }
+          })
           .then((response) => {
             this.list()
             this.close()
@@ -255,7 +273,11 @@
           })
         } else {
           this.$http.post('/api/categoria/add', 
-          this.editedItem)
+          this.editedItem, {
+            headers: {
+            token: this.$store.state.token,
+          }
+          })
             .then(() => {
               this.list()
               this.close()
