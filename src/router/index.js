@@ -11,28 +11,46 @@ const routes = [
     component: Home
   },
   {
-    path: '/about',
-    name: 'About',
+    path: '/registro',
+    name: 'Registro',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: () => import(/* webpackChunkName: "login" */ '../views/Registro.vue')
   },
   {
-    path: '/articulos',
-    name: 'Articulos',
+    path: '/login',
+    name: 'Login',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Articulos.vue')
+    component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue')
   },
   {
-    path: '/categorias',
-    name: 'categorias',
+    path: '/administracion',
+    name: 'Administracion',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Categorias.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/Administracion.vue'),
+    children: [
+      {
+        path: '/articulos',
+        name: 'Articulos',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import(/* webpackChunkName: "about" */ '../views/Articulos.vue')
+      },
+      {
+        path: '/categorias',
+        name: 'categorias',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import(/* webpackChunkName: "about" */ '../views/Categorias.vue')
+      },
+    ]
   },
 ]
 
