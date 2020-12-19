@@ -6,14 +6,14 @@
       dark
     >
       <div class="d-flex align-center">
-        <v-img
+        <!-- <v-img
           alt="Vuetify Logo"
           class="shrink mr-2"
           contain
           src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
           transition="scale-transition"
           width="40"
-        />
+        /> -->
 
         <v-img
           alt="Group Name"
@@ -48,6 +48,7 @@
       <v-btn
         :to="{ name: 'Login' }"
         text
+        class="mr-2"
         exact
       >
         <span class="mr-2">Login</span>
@@ -56,7 +57,6 @@
       <v-btn
         :to="{ name: 'Autenticado' }"
         text
-        exact
       >
         <span class="mr-2">Autenticado</span>
         <v-icon>mdi-key</v-icon>

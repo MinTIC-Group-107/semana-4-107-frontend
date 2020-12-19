@@ -30,7 +30,16 @@ const routes = [
     meta: {
       auth: true
     },
-    // children (Categorias, Articulos)
+    children: [
+      {
+        path: 'categoria',
+        name: 'Categoria',
+        component: () => import(/* webpackChunkName: "categoria" */ '../views/Categoria.vue'),
+        meta: {
+          auth: true
+        }
+      }
+    ]
   }
 ]
 
