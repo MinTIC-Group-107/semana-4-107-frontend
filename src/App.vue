@@ -16,11 +16,11 @@
         />
 
         <v-img
-          alt="Vuetify Name"
+          alt="Group Name"
           class="shrink mt-1 hidden-sm-and-down"
           contain
           min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
+          src="./assets/logo.png"
           width="100"
         />
       </div>
@@ -28,17 +28,44 @@
       <v-spacer></v-spacer>
 
       <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
+        :to="{ name: 'Home' }"
         text
+        class="mr-2"
+        exact
       >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>open_in_new</v-icon>
+        <span class="mr-2">Inicio</span>
+        <v-icon>home</v-icon>
       </v-btn>
+      <v-btn
+        :to="{ name: 'About' }"
+        text
+        class="mr-2"
+        exact
+      >
+        <span class="mr-2">About</span>
+        <v-icon>info</v-icon>
+      </v-btn>
+      <v-btn
+        :to="{ name: 'Login' }"
+        text
+        exact
+      >
+        <span class="mr-2">Login</span>
+        <v-icon>login</v-icon>
+      </v-btn>
+      <v-btn
+        :to="{ name: 'Autenticado' }"
+        text
+        exact
+      >
+        <span class="mr-2">Autenticado</span>
+        <v-icon>mdi-key</v-icon>
+      </v-btn>
+
     </v-app-bar>
 
     <v-main>
-      <HelloWorld/>
+      <router-view />
     </v-main>
   </v-app>
 </template>
