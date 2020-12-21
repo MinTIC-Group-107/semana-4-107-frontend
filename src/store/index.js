@@ -44,8 +44,5 @@ const store =  new Vuex.Store({
   modules: {
   }
 })
-<<<<<<< HEAD
-=======
 
 export default store
->>>>>>> pruebas-manuel
