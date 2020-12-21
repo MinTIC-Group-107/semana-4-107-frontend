@@ -1,7 +1,4 @@
 <template>
-  <div class="home">
-
-  <!-- Navigation bar -->
   <v-card class="overflow-hidden">
     <v-app-bar
       absolute
@@ -9,11 +6,10 @@
       dark
       shrink-on-scroll
       prominent
-      src="https://futuroelectrico.com/wp-content/uploads/2020/08/realidad-virtual.jpg"
+      src="https://picsum.photos/1920/1080?random"
       fade-img-on-scroll
       scroll-target="#scrolling-techniques-3"
     >
-      <!-- banner -->
       <template v-slot:img="{ props }">
         <v-img
           v-bind="props"
@@ -39,7 +35,6 @@
         <v-icon>mdi-dots-vertical</v-icon>
       </v-btn>
 
-      <!-- Pestañas de la barra de navegación -->
       <template v-slot:extension>
         <v-tabs align-with-title>
           <v-tab>Tab 1</v-tab>
@@ -51,44 +46,9 @@
     <v-sheet
       id="scrolling-techniques-3"
       class="overflow-y-auto"
-      max-height="1000px"
+      max-height="600"
     >
-    <!-- Contenido de la pagina -->
-      <v-container style="height: 1500px; margin-top:20%">
-
-        <div id="servicios">
-          <Servicios />
-        </div>
-
-
-      </v-container>
-      <!-- Fin Contenido de la pagina -->
+      <v-container style="height: 1000px;"></v-container>
     </v-sheet>
   </v-card>
-
-
-    
-
-  </div>
 </template>
-
-<script>
-// @ is an alias to /src
-import Servicios from '@/components/home/Servicios.vue'
-import Navigation from '@/components/home/Navbar.vue'
-
-export default {
-  name: 'Home',
-  components: {
-    Servicios,
-    Navigation
-  }
-}
-</script>
-
-<style>
-#servicios {
-  width: 70%;
-  margin: auto;
-}
-</style>

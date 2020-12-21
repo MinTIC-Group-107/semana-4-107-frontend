@@ -14,7 +14,7 @@
       
     >
       <v-sheet
-        color='deep-orange accent-1'
+        color='purple lighten-5'
         height="100%"
         width="100%"
       >
@@ -27,8 +27,9 @@
             <v-card
             light
             :loading="loading"
-            class="mx-auto my-12"
-            max-width="70%" 
+            class="mx-auto my-12 rounded-xl"
+            max-width="90%" 
+            elevation="24"
             >
 
                 <template slot="progress">
