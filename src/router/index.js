@@ -21,7 +21,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "login" */ '../views/Registro.vue'),
+    component: () => import(/* webpackChunkName: "login" */ '../views/auth/Registro.vue'),
     meta: {
       public: true
     },
@@ -32,7 +32,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue'),
+    component: () => import(/* webpackChunkName: "login" */ '../views/auth/Login.vue'),
     meta: {
       public: true
     },
@@ -59,7 +59,7 @@ const routes = [
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "about" */ '../views/Articulos.vue'),
+        component: () => import(/* webpackChunkName: "about" */ '../views/administracion/Articulos.vue'),
         meta: {
           auth: true,
           permisos: ['Administrador', 'Almacenero'],
@@ -73,7 +73,7 @@ const routes = [
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "about" */ '../views/Categorias.vue'),
+        component: () => import(/* webpackChunkName: "about" */ '../views/administracion/Categorias.vue'),
         meta: {
           auth: true,
           permisos: ['Administrador', 'Almacenero'],
@@ -87,7 +87,7 @@ const routes = [
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "about" */ '../views/Usuario.vue'),
+        component: () => import(/* webpackChunkName: "about" */ '../views/administracion/Usuario.vue'),
         meta: {
           auth: true,
           permisos: ['Administrador'],

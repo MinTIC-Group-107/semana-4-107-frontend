@@ -63,14 +63,22 @@
                   </v-col>
                   <v-col
                     cols="12"
-                   
                   >
                     <v-text-field
                       v-model="editedItem.descripcion"
                       label="Descripcion"
                     ></v-text-field>
                   </v-col>
-
+                  <!-- Campo para url de imagen -->
+                  <v-col
+                    cols="12"
+                  >
+                    <v-text-field
+                      v-model="editedItem.imagen"
+                      label="URL de imagen"
+                    ></v-text-field>
+                  </v-col>
+                  <!-- Fin Campo para url de imagen -->
                   <v-col
                     cols="12"
                    
@@ -174,6 +182,7 @@
         { text: 'Descripcion', value: 'descripcion' },
         { text: 'Estado', value: 'estado' },
         { text: 'Categoría', value: 'Categorium.nombre' },
+        { text: 'Imagen', value: 'imagen' },
         { text: 'Actions', value: 'actions', sortable: false },
       ],
       editedIndex: -1,
@@ -183,6 +192,7 @@
         descripcion: '',
         estado: 1,
         categoria: '',
+        imagen: '',
       },
       defaultItem: {
         codigo: '',
@@ -190,6 +200,7 @@
         descripcion: '',
         estado: 1,
         categoria: '',
+        imagen: '',
       },
       categorias: [],
       articulos: [],
@@ -312,7 +323,8 @@
 
       save () {
         if (this.editedIndex>-1) {
-          this.editedItem.categoriaId = this.editedItem.categoria
+          this.editedItem.categoriaId = this.editedItem.categoria.id
+          console.log('objeto enviado', this.editedItem)
           this.$http.put('/api/articulo/update', this.editedItem, {
             headers: {
             token: this.$store.state.token,
@@ -326,6 +338,8 @@
             console.log(err)
           })
         } else {
+          this.editedItem.categoriaId = this.editedItem.categoria
+          console.log('objeto enviado', this.editedItem)
           this.$http.post('/api/articulo/add', 
           this.editedItem, {
             headers: {

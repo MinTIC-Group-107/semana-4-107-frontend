@@ -17,7 +17,7 @@
                 </div>
                 <v-form @submit.prevent="signUp">
 
-                  <v-text-field v-model="user.name" light="light" prepend-icon="account" label="nombre" type="text"></v-text-field>
+                  <v-text-field v-model="user.nombre" light="light" prepend-icon="account" label="nombre" type="text"></v-text-field>
                   <v-text-field v-model="user.email" light="light" prepend-icon="email" label="Email" type="email"></v-text-field>
                   <v-text-field v-model="user.password" light="light" prepend-icon="lock" label="Contraseña" type="password"></v-text-field>
                   <v-text-field v-model="password2" light="light" prepend-icon="lock" label="Contraseña" type="password"></v-text-field>
@@ -61,7 +61,7 @@ export default {
             async signUp() {
     
                     if (this.user.password === this.password2) {
-                        const response = await this.$http.post("/api/usuario/register", this.user)
+                        const response = await this.$http.post("/api/usuario/add", this.user)
                         console.log('result of axios',response)
                         if (response.data.message === "Registro Exitoso") {
                             swal("Bravo!", "El registro ha sido exitoso", "success")

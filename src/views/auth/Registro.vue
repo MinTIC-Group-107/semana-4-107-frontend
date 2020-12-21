@@ -8,7 +8,7 @@
 
 <script>
 // @ is an alias to /src
-import Registro from '@/components/ElRegistro.vue'
+import Registro from '@/components/auth/ElRegistro.vue'
 
 export default {
   name: 'signup',

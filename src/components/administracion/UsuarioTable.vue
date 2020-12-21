@@ -23,7 +23,7 @@
           max-width="500px"
         >
           <template v-slot:activator="{ on, attrs }">
-            <!-- <v-btn
+            <v-btn
               color="primary"
               dark
               class="mb-2"
@@ -31,7 +31,7 @@
               v-on="on"
             >
               Agregar usuario
-            </v-btn> -->
+            </v-btn>
           </template>
           <v-card>
             <v-card-title>
@@ -52,7 +52,6 @@
                   </v-col>
                   <v-col
                     cols="12"
-                   
                   >
                     <v-text-field
                       v-model="editedItem.email"
@@ -60,15 +59,41 @@
                     ></v-text-field>
                   </v-col>
 
+                  <!-- Campo de contraseña 1 -->
                   <v-col
                     cols="12"
-                   
                   >
                     <v-text-field
-                      v-model="editedItem.rol"
-                      label="Rol"
+                      v-if="editedIndex === -1"
+                      v-model="editedItem.password"
+                      label="Contraseña"
+                      type="password"
                     ></v-text-field>
                   </v-col>
+                  <!-- Fin Campo de contraseña 1 -->
+                  <!-- Campo de contraseña 2 -->
+                  <v-col
+                    cols="12"
+                  >
+                    <v-text-field
+                      v-if="editedIndex === -1"
+                      v-model="editedItem.password2"
+                      label="Repetir contraseña"
+                      type="password"
+                    ></v-text-field>
+                  </v-col>
+                  <!-- Fin Campo de contraseña 2 -->
+                  <!-- Campo de rol -->
+                  <v-col
+                    cols="12"
+                  >
+                    <v-select
+                      :items="roles"
+                      v-model="editedItem.rol"
+                      label="Rol"
+                    ></v-select>
+                  </v-col>
+                  <!-- Campo de rol -->
                   
                 </v-row>
               </v-container>
@@ -141,10 +166,12 @@
 </template>
 
 <script>
+import swal from 'sweetalert'
 
   export default {
       props: ['tableName'],
     data: () => ({
+      roles: ['Administrador', 'Almacenero', 'Vendedor', 'Usuario'],
       cargando: true,
       dialog: false,
       dialogDelete: false,
@@ -166,6 +193,8 @@
         id: 0,
         nombre: '',
         email: '',
+        password: '',
+        password2: '',
         rol: '',
         estado: 1,
       },
@@ -181,7 +210,7 @@
 
     computed: {
       formTitle () {
-        return this.editedIndex === -1 ? 'Nueva usuario' : 'Editar usuario'
+        return this.editedIndex === -1 ? 'Nuevo usuario' : 'Editar usuario'
       },
     },
 
@@ -200,7 +229,7 @@
 
     methods: {
       list() {
-        this.$http.get('/api/usuario/', {
+        this.$http.get('/api/usuario/list', {
           headers: {
             token: this.$store.state.token,
           }
@@ -291,12 +320,13 @@
             console.log(err)
           })
         } else {
-          this.$http.post('/api/usuario/add', 
-          this.editedItem, {
-            headers: {
-            token: this.$store.state.token,
-          }
-          })
+          if (this.editedItem.password === this.editedItem.password2) {
+            this.$http.post('/api/usuario/add', 
+            this.editedItem, {
+              headers: {
+                token: this.$store.state.token,
+              }
+            })
             .then(() => {
               this.list()
               this.close()
@@ -304,6 +334,9 @@
             .catch(err => {
               console.log(err)
             })
+          } else {
+            swal("Error", "Las contraseñas no coinciden", "error")
+          }  
         }
       },
     },

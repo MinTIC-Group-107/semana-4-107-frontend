@@ -8,7 +8,7 @@
 
 <script>
 // @ is an alias to /src
-import CRUDTable from '@/components/ArticuloTable.vue'
+import CRUDTable from '@/components/administracion/ArticuloTable.vue'
 
 export default {
   name: 'Articulos',

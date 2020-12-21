@@ -1,7 +1,7 @@
 <template>
 <v-col cols='12'>
   <div>
-    <UsuarioTable tableName="Usuarios"/>
+    <CRUDTable tableName="Categorías"/>
   </div>
 </v-col>
 
@@ -9,12 +9,12 @@
 
 <script>
 // @ is an alias to /src
-import UsuarioTable from '@/components/UsuarioTable.vue'
+import CRUDTable from '@/components/administracion/CategoriaTable.vue'
 
 export default {
-  name: 'Usuarios',
+  name: 'Categorias',
   components: {
-    UsuarioTable
+    CRUDTable
   }
 }
 </script>
