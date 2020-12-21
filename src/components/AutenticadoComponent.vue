@@ -14,6 +14,15 @@
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-toolbar-title>Grupo 107</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn
+        icon
+        class="mr-5"
+        @click="salir()"
+      >
+        <v-icon>mdi-logout</v-icon>
+        <span>Salir</span>
+      </v-btn>
     </v-app-bar>
 
     <v-navigation-drawer
@@ -92,7 +101,12 @@ export default {
     users: [
       ['Usuarios', 'mdi-account-multiple-outline'],
     ],
-  })
+  }),
+  methods: {
+    salir() {
+      this.$store.dispatch('salir')
+    }
+  }
 }
 </script>
 
