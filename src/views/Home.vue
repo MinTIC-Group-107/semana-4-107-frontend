@@ -22,13 +22,13 @@
       </template>
 
       <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
-      <v-toolbar-side-icon>
-        <router-link :to="{ name: 'Home' }">
-          <v-img max-width="150px" src="@/assets/logo.png" />
-        </router-link>
-      </v-toolbar-side-icon>
+      <router-link :to="{ name: 'Home' }">
+        <v-img max-width="150px" src="@/assets/logo.png" />
+      </router-link>
 
-      <v-toolbar-title><i>Calidad a su servicio</i></v-toolbar-title>
+      <v-toolbar-title>
+        VIRTUAL & CREATIVE JOBS COMPANY
+      </v-toolbar-title>
 
       <v-spacer></v-spacer>
 
@@ -56,9 +56,9 @@
       <!-- Pestañas de la barra de navegación -->
       <template v-slot:extension>
         <v-tabs align-with-title>
-          <v-tab :to="{ name: 'Informacion' }">Información</v-tab>
-          <v-tab :to="{ name: 'Servicios' }">Servicios</v-tab>
-          <v-tab :to="{ name: 'CasosExito' }">Historias de éxito</v-tab>
+          <v-tab :to="{ name: 'Informacion' }" exact>Información</v-tab>
+          <v-tab :to="{ name: 'Servicios' }" exact>Servicios</v-tab>
+          <v-tab :to="{ name: 'CasosExito' }" exact>Historias de éxito</v-tab>
         </v-tabs>
       </template>
     </v-app-bar>
@@ -78,7 +78,8 @@
     </v-sheet>
   </v-card>
 
-
+  <!-- Pié de página -->
+  <the-footer></the-footer>
 
 
   </div>
@@ -88,12 +89,14 @@
 // @ is an alias to /src
 import Servicios from '@/components/home/Servicios.vue'
 import Navigation from '@/components/home/Navbar.vue'
+import TheFooter from '../components/home/TheFooter'
 
 export default {
   name: 'Home',
   components: {
     Servicios,
-    Navigation
+    Navigation,
+    TheFooter
   }
 }
 </script>
