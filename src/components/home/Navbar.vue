@@ -19,7 +19,7 @@
 
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
 
-      <v-toolbar-title>Title</v-toolbar-title>
+      <v-toolbar-title>Grupo 107</v-toolbar-title>
 
       <v-spacer></v-spacer>
 
@@ -37,7 +37,7 @@
 
       <template v-slot:extension>
         <v-tabs align-with-title>
-          <v-tab>Tab 1</v-tab>
+          <v-tab>Informacion</v-tab>
           <v-tab>Tab 2</v-tab>
           <v-tab>Tab 3</v-tab>
         </v-tabs>

@@ -11,6 +11,23 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
+    children: [
+      {
+        path: 'informacion',
+        name: 'Informacion',
+        components: {
+          landing: () => import(/* webpackChunkName: "informacion" */ '../views/landing/Informacion.vue')
+        }
+      },
+      {
+        path: 'servicios',
+        name: 'Servicios',
+        components: {
+          default: () => import(/* webpackChunkName: "servicios" */ '../views/landing/Servicios.vue'),
+          landing: () => import(/* webpackChunkName: "servicios" */ '../views/landing/Servicios.vue')
+        }
+      }
+    ],
     meta: {
       public: true
     },
