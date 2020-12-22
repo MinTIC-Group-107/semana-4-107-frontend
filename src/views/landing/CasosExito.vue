@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- <h2>Casos de éxito</h2> -->
+    <h2>Casos de éxito</h2>
     <v-container>
       <v-row>
         <v-col

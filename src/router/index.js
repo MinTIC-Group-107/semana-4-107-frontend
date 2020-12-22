@@ -13,7 +13,7 @@ const routes = [
     component: Home,
     children: [
       {
-        path: 'informacion',
+        path: '/',
         name: 'Informacion',
         components: {
           landing: () => import(/* webpackChunkName: "informacion" */ '../views/landing/Informacion.vue')
