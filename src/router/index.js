@@ -11,6 +11,30 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
+    children: [
+      {
+        path: '/',
+        name: 'Informacion',
+        components: {
+          landing: () => import(/* webpackChunkName: "informacion" */ '../views/landing/Informacion.vue')
+        }
+      },
+      {
+        path: 'servicios',
+        name: 'Servicios',
+        components: {
+          default: () => import(/* webpackChunkName: "servicios" */ '../views/landing/Servicios.vue'),
+          landing: () => import(/* webpackChunkName: "servicios" */ '../views/landing/Servicios.vue')
+        }
+      },
+      {
+        path: 'casos-exito',
+        name: 'CasosExito',
+        components: {
+          landing: () => import(/* webpackChunkName: "casos-exito" */ '../views/landing/CasosExito.vue')
+        }
+      }
+    ],
     meta: {
       public: true
     },
