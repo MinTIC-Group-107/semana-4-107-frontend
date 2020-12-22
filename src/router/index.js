@@ -11,6 +11,23 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
+    children: [
+      {
+        path: 'informacion',
+        name: 'Informacion',
+        components: {
+          landing: () => import(/* webpackChunkName: "informacion" */ '../views/landing/Informacion.vue')
+        }
+      },
+      {
+        path: 'servicios',
+        name: 'Servicios',
+        components: {
+          default: () => import(/* webpackChunkName: "servicios" */ '../views/landing/Servicios.vue'),
+          landing: () => import(/* webpackChunkName: "servicios" */ '../views/landing/Servicios.vue')
+        }
+      }
+    ],
     meta: {
       public: true
     },
@@ -110,7 +127,7 @@ router.beforeEach((to, from, next) => {
   // Revisar si la ruta requiere autenticacion
   } else if (to.matched.some(ruta => ruta.meta.auth)) {
     // Evaluar si el usuario ya esta loggeado
-    if (store.state.user) { 
+    if (store.state.user) {
       // Evaluar si el usuario tiene los permisos necesarios
       if (Vue.prototype.$permisos[to.name].indexOf(store.state.user.rol)>-1) {
         return next()
@@ -120,7 +137,7 @@ router.beforeEach((to, from, next) => {
     // si está en el loggin no devolverlo al loggin para que no haya doble direccionamiento
     } else if (from.name !== 'Login') {
       return next({name: 'Login'})
-    } 
+    }
 
   } else {
     next()

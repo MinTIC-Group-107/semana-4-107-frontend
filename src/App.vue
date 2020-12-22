@@ -3,9 +3,9 @@
 
     <router-view/>
 
-    
-    
-    
+
+
+
   </v-app>
 </template>
 
@@ -14,7 +14,7 @@
 export default {
   name: 'App',
   data: () => ({
-    
+
   })
 };
 </script>
