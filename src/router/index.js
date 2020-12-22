@@ -26,6 +26,13 @@ const routes = [
           default: () => import(/* webpackChunkName: "servicios" */ '../views/landing/Servicios.vue'),
           landing: () => import(/* webpackChunkName: "servicios" */ '../views/landing/Servicios.vue')
         }
+      },
+      {
+        path: 'casos-exito',
+        name: 'CasosExito',
+        components: {
+          landing: () => import(/* webpackChunkName: "casos-exito" */ '../views/landing/CasosExito.vue')
+        }
       }
     ],
     meta: {

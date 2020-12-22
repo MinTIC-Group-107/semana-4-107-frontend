@@ -58,7 +58,7 @@
         <v-tabs align-with-title>
           <v-tab :to="{ name: 'Informacion' }">Información</v-tab>
           <v-tab :to="{ name: 'Servicios' }">Servicios</v-tab>
-          <v-tab to="/">Historias de éxito</v-tab>
+          <v-tab :to="{ name: 'CasosExito' }">Historias de éxito</v-tab>
         </v-tabs>
       </template>
     </v-app-bar>
