@@ -71,12 +71,12 @@
                     $ • Italian, Cafe
                 </div>
 
-                <div v-text="articulo.descripcion"></div>
+                <div v-text="articulo.descripcion" id="descripcion"></div>
                 </v-card-text>
 
                 <v-divider class="mx-4"></v-divider>
 
-                <v-card-title>Tonight's availability</v-card-title>
+                <v-card-title>Agende su cita</v-card-title>
 
                 <v-card-text>
                 <v-chip-group
@@ -125,7 +125,8 @@
       getArticles() {
           this.$http.get('/api/articulo/list')
           .then(res => {
-              this.articulos = res.data
+              const articulos = res.data
+              this.articulos = articulos.filter(articulo => articulo.estado === 1)
               console.log(res.data)
               this.loading = false
           })
@@ -139,3 +140,9 @@
     }
   }
 </script>
+
+<style>
+#descripcion {
+  width: 350px;
+}
+</style>

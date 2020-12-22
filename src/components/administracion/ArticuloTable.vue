@@ -323,7 +323,7 @@
 
       save () {
         if (this.editedIndex>-1) {
-          this.editedItem.categoriaId = this.editedItem.categoria.id
+          this.editedItem.categoriaId = this.editedItem.categoria
           console.log('objeto enviado', this.editedItem)
           this.$http.put('/api/articulo/update', this.editedItem, {
             headers: {

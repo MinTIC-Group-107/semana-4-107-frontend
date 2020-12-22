@@ -65,10 +65,10 @@
     <v-sheet
       id="scrolling-techniques-3"
       class="overflow-y-auto"
-      max-height="1000px"
+      max-height="850px"
     >
     <!-- Contenido de la pagina -->
-      <v-container style="height: 1500px; margin-top:20%">
+      <v-container style="height: 1200px; margin-top:20%">
 
         <router-view name="landing"/>
 

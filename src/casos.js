@@ -3,7 +3,7 @@ const casos = [
     id: 1,
     nombre: "Manuel Mosquera",
     descripcion: "Administrador de empresas apasionado por la programación y el parkour.",
-    rol: "Administrador",
+    rol: "Desarrollador FullStack",
     image: "https://i.imgur.com/bcwNbiI.jpg"
   },
   {
