@@ -26,7 +26,9 @@
         <v-card-text class="white--text pt-0">
           <v-row>
             <v-col cols="12" sm="6">
-              Este sitio ofrecerá servicios de capacitación a las empresas para sus procesos de inducción aplicando realidad virtual y aumentada. Las aplicaciones de la realidad virtual/aumentada en la industria son múltiples, y las principales firmas tecnológicas como Google, Samsung, Microsoft, Sony, HTC y Facebook han apostado fuerte por su tecnología sabedoras de su aplicación al terreno de los particulares y, sobre todo, a sus posibilidades en el terreno profesional y empresarial.
+              <v-card-text class="text-left">
+                Este sitio ofrecerá servicios de capacitación a las empresas para sus procesos de inducción aplicando realidad virtual y aumentada. Las aplicaciones de la realidad virtual/aumentada en la industria son múltiples, y las principales firmas tecnológicas como Google, Samsung, Microsoft, Sony, HTC y Facebook han apostado fuerte por su tecnología sabedoras de su aplicación al terreno de los particulares y, sobre todo, a sus posibilidades en el terreno profesional y empresarial.
+              </v-card-text>
             </v-col>
             <v-col cols="12" sm="6">
               <h2>Contacto</h2>
@@ -53,6 +55,7 @@ export default {
       ['mdi-facebook', 'https://www.facebook.com/MinisterioTIC.Colombia'],
       ['mdi-twitter', 'https://twitter.com/MinTIC_responde'],
       ['mdi-github', 'https://github.com/MinTIC-Group-107/semana-4-107-frontend'],
+      ['mdi-github', 'https://github.com/MinTIC-Group-107/semana-4-107'],
       ['mdi-instagram', 'https://www.instagram.com/ministerio_tic/?hl=es-la'],
     ],
   }),
